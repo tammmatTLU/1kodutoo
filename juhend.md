@@ -1,6 +1,5 @@
 # 1-kodutoo
 # 1-kodutoo
-
 ## Tähtaeg 01.04.2025 23:59
 
 Max 15 punkti.
