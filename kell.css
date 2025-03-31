@@ -21,6 +21,8 @@ Juhised lokaalsete fontide kasutamiseks olid @font-face kit downloadi sees. Samu
 body {
     margin: 0;
     display: flex;
+    overflow: hidden;
+    height: 100%;
     justify-content: center;
     align-items: center;
     height: 100vh;
