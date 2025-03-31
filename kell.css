@@ -1,0 +1,168 @@
+/*
+Lingid kust kummagi fondi tõmbasin:
+https://font.download/font/mantinia
+https://font.download/font/optimus-princeps
+Juhised lokaalsete fontide kasutamiseks olid @font-face kit downloadi sees. Samuti oli seal näide css-i kujust, mida ka siin kasutasin, muutes ära aadressi. 
+*/
+@font-face {
+    font-family: 'Mantinia Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Mantinia Regular'), url('fonts/Mantinia.woff') format('woff');
+}
+@font-face {
+    font-family: 'OptimusPrinceps';
+    font-style: normal;
+    font-weight: normal;
+    src: local('OptimusPrinceps'), url('fonts/OptimusPrincepsSemiBold.woff') format('woff');
+}
+
+/* Prompt: Starting Point */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    color: gold;
+    font-family: 'Mantinia Regular', serif;
+    text-shadow: 
+        -2px -2px 5px black,  
+         2px -2px 5px black,  
+        -2px  2px 5px black,  
+         2px  2px 5px black;
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+/* Prompt: Starting Point */
+.clock-container {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+/* Prompt: Starting Point */
+.time {
+    font-size: 8vw;
+}
+
+/* Prompt: Starting Point */
+.date {
+    font-size: 2vw;
+}
+
+/* Prompt: Starting Point */
+.info {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 1vw;
+    color: white;
+    text-align: left;
+    opacity: 0.7;
+}
+
+/* 
+Prompt: Modify
+Prompt: Game selection
+*/
+.game-button, .modify-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2vw;
+    border-radius: 5px;
+}
+
+/* Prompt: Game selection */
+.game-selection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 3;
+}
+
+/* Prompt: Game selection */
+.game-selection img {
+    max-width: 300px;
+    height: auto;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+/* Prompt: Game selection */
+.game-selection img:hover {
+    transform: scale(1.1);
+}
+
+/* Prompt: Game selection */
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2vw;
+    color: white;
+    cursor: pointer;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Prompt: Modify */
+.modify-button {
+    top: 70px;
+}
+
+/* Prompt: Modify */
+.settings-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    padding: 20px;
+    z-index: 3;
+}
+
+/* Prompt: Modify */
+.settings-panel label, .settings-panel select, .settings-panel input {
+    font-size: 1.5vw;
+    margin: 10px;
+}
+
+/* Prompt: Modify */
+.close-settings {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 2vw;
+    color: white;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+}

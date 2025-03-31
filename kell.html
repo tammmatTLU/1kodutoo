@@ -1,0 +1,53 @@
+<!-- ! + [TAB] -->
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videomängu Kell</title>
+    <link rel="stylesheet" href="kell.css"></link>
+    <script src="kell.js" defer></script>
+</head>
+<body>
+    <!-- Prompt: Game selection -->
+    <button class="game-button">Game Selection</button> 
+    
+    <!-- Prompt: Modify -->
+    <button class="modify-button">Modify</button> 
+    
+    <!-- Prompt: Game selection -->
+    <div class="game-selection" id="game-selection"> 
+        <span class="close-button">&times;</span>
+    </div>
+
+    <!-- Prompt: Modify -->
+    <div class="settings-panel" id="settings-panel"> 
+        <span class="close-settings">&times;</span>
+        <label for="font-size-slider">Font Size:</label>
+        <input type="range" min="5" max="20" value="8" id="font-size-slider">
+        <label for="language">Language:</label>
+        <select id="language">
+            <option value="et-EE">Estonian</option>
+            <option value="en-US">English</option>
+        </select>
+        <label for="timezone">Timezone:</label>
+        <select id="timezone">
+            <option value="Europe/Tallinn">Tallinn</option>
+            <option value="Europe/London">London</option>
+            <option value="America/New_York">New York</option>
+        </select>
+    </div>
+    
+    <!-- Prompt: Starting point -->
+    <div class="clock-container" id="clock-container">
+        <div class="time" id="time"></div>
+        <div class="date" id="date"></div>
+    </div>
+    
+    <!-- Prompt: Starting point -->
+    <div class="info">
+        <div class="author">Autor: Mattias Tamm</div>
+        <div class="repo-link"><a href="https://github.com/tammmatTLU/1kodutoo" target="_blank">Repo link</a></div>
+    </div>
+</body>
+</html>
