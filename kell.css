@@ -52,7 +52,7 @@ body {
 /* Prompt: Starting Point */
 .clock-container {
     text-align: center;
-    width: 100%;
+    width: auto;
     position: absolute;
     z-index: 1;
 }

@@ -127,25 +127,50 @@ function updateTimezone(timezone) {
 document.addEventListener('keydown', function(event) {
     const clock = document.getElementById('clock-container');
     const step = 10;
-    let top = clock.offsetTop;
-    let left = clock.offsetLeft;
-    if (event.key === 'ArrowUp') clock.style.top = (top - step) + 'px';
-    if (event.key === 'ArrowDown') clock.style.top = (top + step) + 'px';
-    if (event.key === 'ArrowLeft') clock.style.left = (left - step) + 'px';
-    if (event.key === 'ArrowRight') clock.style.left = (left + step) + 'px';
+    
+    //Lisa selleks, et kell ei saaks ekraanilt välja liikuda. Prompt: Is there any way I could make it so that the clock-container cannot be moved outside the frame? right now I can move it off the screen entirely with the arrow keys.
+    const rect = clock.getBoundingClientRect();
+    const parentRect = clock.parentElement.getBoundingClientRect();
+
+    // Compute new position
+    let newLeft = rect.left;
+    let newTop = rect.top;
+
+    if (event.key === "ArrowLeft") newLeft -= step;
+    if (event.key === "ArrowRight") newLeft += step;
+    if (event.key === "ArrowUp") newTop -= step;
+    if (event.key === "ArrowDown") newTop += step;
+
+    // Ensure new position is within bounds
+    if (newLeft >= parentRect.left && newLeft + rect.width <= parentRect.right) {
+        clock.style.left = newLeft + "px";
+    }
+    if (newTop >= parentRect.top && newTop + rect.height <= parentRect.bottom) {
+        clock.style.top = newTop + "px";
+    }
 });
 
 // Alguses Prompt: Starting Point, kuid teiste muudatuste käigus kuju muutus. Lõppkuju saavutati Prompt: Modify käigus.
 function updateClock() {
     const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
+    let hours = now.getHours();
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
+    
+    let is12HourFormat = languageSelector.value === "en-US";
+
+    let amPm = '';
+    if (is12HourFormat) {
+        amPm = hours >= 12 ? ' PM' : ' AM';
+        hours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
+    }
+    
+    hours = String(hours).padStart(2, '0'); // Ensure two-digit format
 
     document.getElementById('time').innerHTML = `
         <span>${hours[0]}</span><span>${hours[1]}</span>:
         <span>${minutes[0]}</span><span>${minutes[1]}</span>:
-        <span>${seconds[0]}</span><span>${seconds[1]}</span>
+        <span>${seconds[0]}</span><span>${seconds[1]}</span>${is12HourFormat ? `<span>${amPm}</span>` : ''}
     `;
 }
 
