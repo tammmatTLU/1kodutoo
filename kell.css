@@ -38,6 +38,17 @@ body {
     transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
+#frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Higher than background but lower than menus */
+    pointer-events: none; /* Prevents interaction */
+    background: radial-gradient(circle, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%);
+}
+
 /* Prompt: Starting Point */
 .clock-container {
     text-align: center;
@@ -50,6 +61,20 @@ body {
 .time {
     font-size: 8vw;
 }
+
+#time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#time span {
+    display: inline-block;
+    min-width: 0.9em;
+    text-align: center;
+}
+
 
 /* Prompt: Starting Point */
 .date {
@@ -66,6 +91,7 @@ body {
     color: white;
     text-align: left;
     opacity: 0.7;
+    z-index: 2;
 }
 
 /* 
@@ -83,6 +109,7 @@ Prompt: Game selection
     cursor: pointer;
     font-size: 1.2vw;
     border-radius: 5px;
+    z-index: 2;
 }
 
 /* Prompt: Game selection */

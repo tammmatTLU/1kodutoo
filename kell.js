@@ -138,12 +138,17 @@ document.addEventListener('keydown', function(event) {
 // Alguses Prompt: Starting Point, kuid teiste muudatuste käigus kuju muutus. Lõppkuju saavutati Prompt: Modify käigus.
 function updateClock() {
     const now = new Date();
-    document.getElementById('time').textContent = new Intl.DateTimeFormat([], {
-        timeZone: currentTimezone,
-        hour: '2-digit', minute: '2-digit', second: '2-digit',
-        hour12: document.getElementById('language').value === 'en-US'
-    }).format(now);
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    document.getElementById('time').innerHTML = `
+        <span>${hours[0]}</span><span>${hours[1]}</span>:
+        <span>${minutes[0]}</span><span>${minutes[1]}</span>:
+        <span>${seconds[0]}</span><span>${seconds[1]}</span>
+    `;
 }
+
 
 setInterval(updateClock, 1000);
 updateClock();
