@@ -53,7 +53,7 @@ const games = [
     }
 ];
 
-//ChatGPT poolt loodud koodis olid HTML elementide küljes onclick ja onchange eventid. Lõpu poole, kui koodi erladi failidesse tõstsin, siis asendasin need eventListeneridega javascripti failis.
+//ChatGPT poolt loodud koodis olid HTML elementide küljes onclick ja onchange eventid. Lõpu poole, kui koodi eraldi failidesse tõstsin, siis asendasin need eventListeneridega javascripti failis.
 document.querySelector(".game-button").addEventListener("click", toggleGameSelection);
 document.querySelector(".modify-button").addEventListener("click", toggleSettingsPanel);
 document.querySelector(".close-button").addEventListener("click", toggleGameSelection);
@@ -151,7 +151,7 @@ document.addEventListener('keydown', function(event) {
 });
 
 // Alguses Prompt: Starting Point, kuid teiste muudatuste käigus kuju muutus. Lõppkuju saavutati Prompt: Modify käigus.
-function updateClock() {
+/*Viimane viimistlus, sest ajavööndit ei olnud võimalik muuta peale eelmist muudatust: Can you modify this function to format the date into the timezone stored in the variable currentTimezone and the language determined by the variable languageSelector.value using .toLocaleString: 'updateClock() {
     const now = new Date();
     let hours = now.getHours();
     const minutes = String(now.getMinutes()).padStart(2, '0');
@@ -167,12 +167,48 @@ function updateClock() {
     
     hours = String(hours).padStart(2, '0'); // Ensure two-digit format
 
+    document.getElementById('time').innerHTML = 
+        <span>${hours[0]}</span><span>${hours[1]}</span>:
+        <span>${minutes[0]}</span><span>${minutes[1]}</span>:
+        <span>${seconds[0]}</span><span>${seconds[1]}</span>${is12HourFormat ? <span>${amPm}</span> : ''}
+    ;
+}'
+*/
+function updateClock() {
+    const now = new Date();
+    
+    // Convert the current time to the selected timezone and language
+    const options = { 
+        timeZone: currentTimezone, 
+        hour: "2-digit", 
+        minute: "2-digit", 
+        second: "2-digit", 
+        hour12: languageSelector.value === "en-US" // 12-hour format only for en-US
+    };
+
+    const formattedTime = now.toLocaleString(languageSelector.value, options);
+    
+    // Extract the parts
+    const timeParts = formattedTime.match(/(\d+):(\d+):(\d+)\s?(AM|PM)?/);
+    
+    if (!timeParts) return; // Safety check
+    
+    let [ , hours, minutes, seconds, amPm = ""] = timeParts;
+    
+    // Ensure hours, minutes, and seconds are two-digit
+    hours = hours.padStart(2, '0');
+    minutes = minutes.padStart(2, '0');
+    seconds = seconds.padStart(2, '0');
+
+    // Update the HTML content
     document.getElementById('time').innerHTML = `
         <span>${hours[0]}</span><span>${hours[1]}</span>:
         <span>${minutes[0]}</span><span>${minutes[1]}</span>:
-        <span>${seconds[0]}</span><span>${seconds[1]}</span>${is12HourFormat ? `<span>${amPm}</span>` : ''}
+        <span>${seconds[0]}</span><span>${seconds[1]}</span>
+        ${amPm ? `<span>${amPm}</span>` : ''}
     `;
 }
+
 
 
 setInterval(updateClock, 1000);
